@@ -47,7 +47,3 @@ def calculate_number_and_power_of_tugs(ambient_name, perimeter = 0):
       power_tugs = number_tugs * 100
       return number_tugs, power_tugs
     return 0
-
-ambient_name = 'corredor'
-perimeter = 13
-print(calculate_number_and_power_of_tugs(ambient_name, perimeter))
