@@ -2,6 +2,7 @@ from power_sizing import calculate_power_luminance
 from power_sizing import calculate_number_and_power_of_tugs
 from conductor_sizing import conduction_capacity
 from conductor_sizing import minimum_section
+from conductor_sizing import voltage_drop
 
 #IMPORTANT: all inputs is in portuguese, remember this
 
@@ -15,9 +16,13 @@ calculate_number_and_power_of_tugs('sala',14)
 
 # Sizing conductor by capacity conduction
 # inputs: power (Watts/VA), Tension: optional (default 220), Potency-factor: optional (used if Watts, default 1)
-# Circuit Type: mono/tri (str) (default mono)    
+# Circuit Type: optional mono/tri (str) (default mono)    
 conduction_capacity(21000, fp=0.9 ,ft=0.87, fg=0.8, circuit_type='tri')
 
 # Sizing conductor by section minimum
 # inputs: Circuit type (str)
 minimum_section('forca')
+
+# Sizing conductor by voltage drop
+# inputs: power (Watts/VA), distance in (m)
+voltage_drop(5400,15)

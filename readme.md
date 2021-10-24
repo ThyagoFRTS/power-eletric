@@ -8,9 +8,9 @@
 ## Features
 
 - Power sizing (TUG & lighting)
-- Conductors sizing
--- by Minimum Section
--- by Coduction Capacity
+- Conductors sizing by Minimum Section
+- Conductors sizing by Coduction Capacity
+- Conductors sizing by Voltage Drop
 
 ## How to Use
 <p>All input parametters is in portuguese</p>
@@ -25,7 +25,7 @@
 
 ### Dependencies
 
-- Pandas v1.1.5
+- Pandas v1.1.5 or higher
 
 ## Technologies
 

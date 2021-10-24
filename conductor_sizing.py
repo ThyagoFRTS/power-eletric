@@ -59,3 +59,23 @@ def minimum_section(circuit_type):
   else:
     print('no matches found')
     return 0
+
+def voltage_drop(power, size_conductor, drop_rate = 0.04, tension = 220, fp = 1, circuit_type = 'mono', installation_method = 'B1'):
+  Ib = 0
+  V = tension
+  size_conductor = size_conductor/1000
+  if circuit_type == 'mono':
+    circ_type = 'Monophase circuit'
+    Ib = power/(V*fp)
+  elif circuit_type == 'tri':
+    circ_type = 'Triphase circuit'
+    V = 380
+    Ib = power/(V*1.732*fp)
+    charged_conductors = '3'
+  else:
+    print('No maches found')
+    return -1
+  
+  voltage_rate = (drop_rate * tension)/(Ib * size_conductor)
+  print('Voltage drop: '+str(voltage_rate))
+  return voltage_rate
