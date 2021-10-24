@@ -1,9 +1,13 @@
 #WARNNING: this method dont changes all European data
 #change each value with lambda function if necessary
+import pandas as pd
+
 def get_conduction_table():
   table_conduction = pd.read_csv('tables/coduction_capacity_cu.csv', decimal=',')
   methods = table_conduction[table_conduction.columns[1:]]
   sections = table_conduction.Section.drop([0])
+
+  data = {}
   unnamed_columns = []
   installation_methods = []
   for column in methods.columns: unnamed_columns.append(column) if 'Unnamed' in column else installation_methods.append(column)

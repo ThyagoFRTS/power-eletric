@@ -22,15 +22,18 @@ def conduction_capacity(power, tension = 220, fp = 1, circuit_type = 'mono', ins
   for electric_current, index in zip(methods[installation_method][charged_conductors],methods[installation_method][charged_conductors].index):
     if float(electric_current.replace(',','.')) >= Ib:
       section = sections[index]
-      print('Section: ', section)
+      print('Section by Conduction Capacity: ', section)
       break
 
 def minimum_section(circuit_type):
   if circuit_type == 'forca':
+    print('Section by Minimum Section: ', 2.5)
     return 2.5
   elif circuit_type == 'iluminacao':
+    print('Section by Minimum Section: ', 1.5)
     return 1.5
   elif circuit_type == 'controle':
+    print('Section by Minimum Section: ', 0.5)
     return 0.5
   else:
     print('no matches found')
