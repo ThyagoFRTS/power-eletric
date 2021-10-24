@@ -35,5 +35,8 @@
 
 - Thyago Rodrigues (ThyagoKZKR)
 
-## License
+## License & copyright
+
+© Thyago M. Rodrigues
+Licensed under [MIT License](LICENSE)
 
