@@ -25,4 +25,5 @@ minimum_section('forca')
 
 # Sizing conductor by voltage drop
 # inputs: power (Watts/VA), distance in (m)
+# See a value less than your voltage drop on voltage drop table on internet (not disponible in this repository)
 voltage_drop(5400,15)
