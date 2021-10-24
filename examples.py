@@ -15,7 +15,8 @@ calculate_number_and_power_of_tugs('sala',14)
 
 # Sizing conductor by capacity conduction
 # inputs: power (Watts/VA), Tension: optional (default 220), Potency-factor: optional (used if Watts, default 1)
-conduction_capacity(3000, fp=0.8)
+# Circuit Type: mono/tri (str) (default mono)    
+conduction_capacity(21000, fp=0.9 ,ft=0.87, fg=0.8, circuit_type='tri')
 
 # Sizing conductor by section minimum
 # inputs: Circuit type (str)
