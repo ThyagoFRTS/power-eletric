@@ -7,7 +7,6 @@ def conduction_capacity(power, tension = 220, fp = 1, circuit_type = 'mono', ins
   section = 0
   charged_conductors = '2'
   if circuit_type == 'mono':
-    V = 220
     Ib = power/(V*fp)
   else:
     V = 380
