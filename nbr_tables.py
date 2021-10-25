@@ -1,9 +1,13 @@
 #WARNNING: this method dont changes all European data
 #change each value with lambda function if necessary
 import pandas as pd
+import pathlib
+
+script_dir = pathlib.Path(__file__).parent.resolve()
+
 
 def get_conduction_table():
-  table_conduction = pd.read_csv('tables/coduction_capacity_cu.csv', decimal=',')
+  table_conduction = pd.read_csv(str(script_dir)+'/tables/coduction_capacity_cu.csv', decimal=',')
   methods = table_conduction[table_conduction.columns[1:]]
   sections = table_conduction.Section.drop([0])
 

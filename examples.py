@@ -3,7 +3,7 @@ from power_sizing import calculate_number_and_power_of_tugs
 from conductor_sizing import conduction_capacity
 from conductor_sizing import minimum_section
 from conductor_sizing import voltage_drop
-
+import pathlib
 #IMPORTANT: all inputs is in portuguese, remember this
 
 # Calculate power luminance of an ambient
