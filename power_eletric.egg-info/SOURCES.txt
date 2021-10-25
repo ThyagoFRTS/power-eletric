@@ -1,9 +1,0 @@
-LICENSE
-README.md
-setup.py
-C:/Development/PythonModules/power-eletric/powereletric/tables/coduction_capacity_cu.csv
-power_eletric.egg-info/PKG-INFO
-power_eletric.egg-info/SOURCES.txt
-power_eletric.egg-info/dependency_links.txt
-power_eletric.egg-info/requires.txt
-power_eletric.egg-info/top_level.txt

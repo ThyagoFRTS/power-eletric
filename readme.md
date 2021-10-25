@@ -22,6 +22,7 @@
 ## How to Install
 
 <p>By now, this project is no exportable to python packages </p>
+<p>Git clone or download zip files</p>
 
 ### Dependencies
 
