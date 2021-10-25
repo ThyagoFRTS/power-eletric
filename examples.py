@@ -15,8 +15,8 @@ calculate_power_luminance(12)
 calculate_number_and_power_of_tugs('sala',14)
 
 # Sizing conductor by capacity conduction
-# inputs: power (Watts/VA), Tension: optional (default 220), Potency-factor: optional (used if Watts, default 1)
-# Circuit Type: optional mono/tri (str) (default mono)    
+# inputs: power (Watts/VA), tension: optional (default 220), Potency-factor: optional (used if Watts, default 1)
+# circuit_type: optional mono/tri (str) (default mono)    
 conduction_capacity(21000, fp=0.9 ,ft=0.87, fg=0.8, circuit_type='tri')
 
 # Sizing conductor by section minimum
@@ -24,6 +24,6 @@ conduction_capacity(21000, fp=0.9 ,ft=0.87, fg=0.8, circuit_type='tri')
 minimum_section('forca')
 
 # Sizing conductor by voltage drop
-# inputs: power (Watts/VA), distance in (m)
-# See a value less than your voltage drop on voltage drop table on internet (not disponible in this repository)
-voltage_drop(5400,15)
+# inputs: power (Watts/VA), distance in (m), fp: (default 1), circuit_type: mono/tr (default mono)
+# isolation_type = optional 0 to Non-Magnetic 1 to Magnetic (default 0), drop_rate: optional (default 0.04)
+voltage_drop(5400,15, drop_rate=0.02)

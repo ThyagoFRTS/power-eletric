@@ -1,5 +1,6 @@
 #from powereletric.nbr_tables import get_conduction_table
 from nbr_tables import get_conduction_table
+from nbr_tables import get_tension_drop_table
 
 def conduction_capacity(power, tension = 220, fp = 1, ft=1, fg=1 , circuit_type = 'mono', installation_method = 'B1'):
   V = tension
@@ -60,14 +61,18 @@ def minimum_section(circuit_type):
     print('no matches found')
     return 0
 
-def voltage_drop(power, size_conductor, drop_rate = 0.04, tension = 220, fp = 1, circuit_type = 'mono', installation_method = 'B1'):
+def voltage_drop(power, size_conductor, drop_rate = 0.04, tension = 220, fp = 1, isolation_type = 0, circuit_type = 'mono', installation_method = 'B1'):
   Ib = 0
   V = tension
   size_conductor = size_conductor/1000
+  circuit = 'Mono'
+  isolations = ['Non-Magnetic', 'Magnetic']
+  
   if circuit_type == 'mono':
     circ_type = 'Monophase circuit'
     Ib = power/(V*fp)
   elif circuit_type == 'tri':
+    circuit = 'Tri'
     circ_type = 'Triphase circuit'
     V = 380
     Ib = power/(V*1.732*fp)
@@ -78,4 +83,22 @@ def voltage_drop(power, size_conductor, drop_rate = 0.04, tension = 220, fp = 1,
   
   voltage_rate = (drop_rate * tension)/(Ib * size_conductor)
   print('Voltage drop: '+str(voltage_rate))
-  return voltage_rate
+
+  data, sections = get_tension_drop_table()
+  fp_selected = '0.8' if abs(fp - 0.8) < abs(fp - 0.95)  else '0.95'
+
+  table = data[isolations[isolation_type]]
+  if isolation_type == 1:
+    for electric_current, index in zip(table['MonoTri'][fp_selected], table['MonoTri'][fp_selected].index):
+      if electric_current <= voltage_rate:
+        section = sections[index]
+        print('Section by Drop Rate: ', section)
+        break
+  else:
+    for electric_current, index in zip(table[circuit][fp_selected], table[circuit][fp_selected].index):  
+      if electric_current <= voltage_rate:
+        section = sections[index]
+        print('Section by Drop Rate: ', section)
+        break
+
+  return voltage_rate, section
