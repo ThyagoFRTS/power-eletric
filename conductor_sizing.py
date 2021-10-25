@@ -1,5 +1,5 @@
-from powereletric.nbr_tables import get_conduction_table
-
+#from powereletric.nbr_tables import get_conduction_table
+from nbr_tables import get_conduction_table
 
 def conduction_capacity(power, tension = 220, fp = 1, ft=1, fg=1 , circuit_type = 'mono', installation_method = 'B1'):
   V = tension
