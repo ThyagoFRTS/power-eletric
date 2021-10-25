@@ -3,6 +3,7 @@ from power_sizing import calculate_number_and_power_of_tugs
 from conductor_sizing import conduction_capacity
 from conductor_sizing import minimum_section
 from conductor_sizing import voltage_drop
+from conductor_sizing import harmonic_rate
 import pathlib
 #IMPORTANT: all inputs is in portuguese, remember this
 
@@ -26,4 +27,8 @@ minimum_section('forca')
 # Sizing conductor by voltage drop
 # inputs: power (Watts/VA), distance in (m), fp: (default 1), circuit_type: mono/tr (default mono)
 # isolation_type = optional 0 to Non-Magnetic 1 to Magnetic (default 0), drop_rate: optional (default 0.04)
-voltage_drop(13000,40,drop_rate=0.02,circuit_type='tri',fp = 0.75)
+voltage_drop(13000,40, drop_rate=0.02, circuit_type='tri', fp = 0.75, isolation_type = 0)
+
+# Sizing conductor by harmonic
+# inputs: harmonics [I1, I3, I5...]
+harmonic_rate(harmonics = [100,60,45,30,20], fp = 1, ft=1, fg=1 , circuit_type = 'tri', installation_method = 'B1')
