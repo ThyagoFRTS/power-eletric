@@ -75,11 +75,9 @@ def voltage_drop(power, size_conductor, drop_rate = 0.04, tension = 220, fp = 1,
   isolations = ['Non-Magnetic', 'Magnetic']
   
   if circuit_type == 'mono':
-    circ_type = 'Monophase circuit'
     Ib = power/(V*fp)
   elif circuit_type == 'tri':
     circuit = 'Tri'
-    circ_type = 'Triphase circuit'
     V = 380
     Ib = power/(V*1.732*fp)
     charged_conductors = '3'
