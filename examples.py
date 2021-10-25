@@ -26,4 +26,4 @@ minimum_section('forca')
 # Sizing conductor by voltage drop
 # inputs: power (Watts/VA), distance in (m), fp: (default 1), circuit_type: mono/tr (default mono)
 # isolation_type = optional 0 to Non-Magnetic 1 to Magnetic (default 0), drop_rate: optional (default 0.04)
-voltage_drop(5400,15, drop_rate=0.02)
+voltage_drop(13000,40,drop_rate=0.02,circuit_type='tri',fp = 0.75)
