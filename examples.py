@@ -37,9 +37,11 @@ section4, thd3 = harmonic_rate(harmonics = [100,60,45,30,20], fp = 1, ft=1, fg=1
 
 # Sizing neutral
 # inputs: phase_section (mm), Ib: project current, balanced_circuit: optional bool (default True), circuit_type: optional 'mono'/'tri'  (default 'mono')
-get_neutral_section(95, 10, circuit_type = 'tri', index_THD3 = 0.14, balanced_circuit = True)
+neutral_section1 = get_neutral_section(95, 10, circuit_type = 'tri', index_THD3 = 0.14, balanced_circuit = True)
 
 
 # Sizing protection
 # inputs: phase_section (mm)
-get_neutral_section(70, 130, circuit_type = 'tri', index_THD3 = 0.6, balanced_circuit = True, installation_method = 'B1', ft=1, fg=1)
+neutral_section1 = get_neutral_section(70, 130, circuit_type = 'tri', index_THD3 = 0.6, balanced_circuit = True, installation_method = 'B1', ft=1, fg=1)
+
+get_conductor_protection_section(95)
