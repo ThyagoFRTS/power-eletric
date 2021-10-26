@@ -1,6 +1,7 @@
 #from powereletric.nbr_tables import get_conduction_table
 from nbr_tables import get_conduction_table
 from nbr_tables import get_tension_drop_table
+from tools import search_in_conduction_table
 import math
 
 def conduction_capacity(power, tension = 220, fp = 1, ft=1, fg=1 , circuit_type = 'mono', installation_method = 'B1'):
@@ -12,42 +13,34 @@ def conduction_capacity(power, tension = 220, fp = 1, ft=1, fg=1 , circuit_type 
   if circuit_type == 'mono':
     circ_type = 'Monophase circuit'
     Ib = power/(V*fp)
-    Ib1 = power/(V*fp*ft*fg)
+    #Ib1 = power/(V*fp*ft*fg)
   elif circuit_type == 'tri':
     circ_type = 'Triphase circuit'
     V = 380
     Ib = power/(V*1.732*fp)
-    Ib1 = power/(V*1.732*fp*ft*fg)
+    #Ib1 = power/(V*1.732*fp*ft*fg)
     charged_conductors = '3'
   else:
     print('No maches found')
     return -1
-
+  
+  Ib1 = Ib/(ft*fg)
+  
   print('Project current: ', Ib)
   print('Current to table: ', Ib1)
   print('Charged conductors:', charged_conductors)
-
+  
   methods, sections = get_conduction_table()
-  capacity_cable = 1
-
-  for electric_current, index in zip(methods[installation_method][charged_conductors],methods[installation_method][charged_conductors].index):
-    i = float(str(electric_current).replace(',','.'))
-    if i >= Ib1:
-        section = sections[index]
-        capacity_cable = i
-        if (i*fp*fg < Ib):
-          print("Normal conditions, cable with sectinon "+str(section)+" supports "+str(i)+', but with ft and fg, the real capacity is:'+ str(i*ft*fg))
-          continue
-        print('Section by Conduction Capacity: ', section)
-        break
+  section = 0
+  
+  section, current = search_in_conduction_table(Ib,Ib1, ft, fg, charged_conductors, installation_method)
+  print('Section by Conduction Capacity: ', section)
 
   if fg != 1 or ft !=1:
-    print("Normal conditions, cable supports "+str(i)+', but with ft and fg, the real capacity is:'+ str(i*ft*fg))
+    print("Normal conditions, cable supports "+str(current)+', but with ft and fg, the real capacity is:'+ str(current*ft*fg))
+  return section
   print('')
   
-
-
-
 def minimum_section(circuit_type):
   section = 0
   if circuit_type == 'forca':
@@ -64,9 +57,6 @@ def minimum_section(circuit_type):
     return -1
   print('')
   return section
-
-
-
 
 def voltage_drop(power, size_conductor, drop_rate = 0.04, tension = 220, fp = 1, isolation_type = 0, circuit_type = 'mono', installation_method = 'B1'):
   Ib = 0
@@ -98,6 +88,7 @@ def voltage_drop(power, size_conductor, drop_rate = 0.04, tension = 220, fp = 1,
   print('Power factor selectd to enter on table: ',fp_selected)
   
   table = data[isolations[isolation_type]]
+  section = 0
   if isolation_type == 1:
     for electric_current, index in zip(table['MonoTri'][fp_selected], table['MonoTri'][fp_selected].index):
       if float(electric_current) <= voltage_rate:
@@ -111,20 +102,21 @@ def voltage_drop(power, size_conductor, drop_rate = 0.04, tension = 220, fp = 1,
         print('Section: ', section)
         break
   print('')
-  return voltage_rate, section
+  return section
 
-def harmonic_rate(harmonics = [], fp = 1, ft=1, fg=1 , circuit_type = 'mono', installation_method = 'B1'):
+def harmonic_rate(harmonics = [], fp = 1, ft=1, fg=1 , circuit_type = 'tri', installation_method = 'B1'):
   Ib = math.sqrt(sum([harmonic**2 for harmonic in harmonics]))
+  index_THD3 = 0
   if len(harmonics)>=2:
-    THD3 = 100 * harmonics[1]/harmonics[0]
+    index_THD3 = harmonics[1]/harmonics[0]
     print('Project current: ', Ib)
-    print('THD3 (%): ', THD3)
-    if THD3 > 33:
+    print('THD3 (%): ', index_THD3)
+    if index_THD3 > 0.33:
       Ib = Ib/0.86
 
       print('Adjusting Project current: ', Ib)
   
-  if circuit_type == 'mono':
+  if circuit_type == 'bi':
     charged_conductors = '2'
   elif circuit_type == 'tri':
     charged_conductors = '3'
@@ -143,6 +135,7 @@ def harmonic_rate(harmonics = [], fp = 1, ft=1, fg=1 , circuit_type = 'mono', in
 
   methods, sections = get_conduction_table()
   capacity_cable = 1
+  section = 0
 
   for electric_current, index in zip(methods[installation_method][charged_conductors],methods[installation_method][charged_conductors].index):
     i = float(str(electric_current).replace(',','.'))
@@ -158,4 +151,7 @@ def harmonic_rate(harmonics = [], fp = 1, ft=1, fg=1 , circuit_type = 'mono', in
   if fg != 1 or ft !=1:
     print("Normal conditions, cable supports "+str(i)+', but with ft and fg, the real capacity is:'+ str(i*ft*fg))
   print('')
+  return section, index_THD3
+  
+
   

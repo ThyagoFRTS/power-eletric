@@ -40,3 +40,15 @@ def get_tension_drop_table():
   data['Non-Magnetic']['Tri'].columns = potency_factors
 
   return data,sections
+
+def get_neutral_reduction_table():
+  neutral_reduction = pd.read_csv(str(script_dir)+'/tables/neutral_reduction.csv')
+  data = neutral_reduction['Phase']
+  sections = neutral_reduction['Neutral_Reduction']
+  return data,sections
+
+def get_fh_factor_table():
+  fh_factor = pd.read_csv(str(script_dir)+'/tables/fh_factor.csv')
+  thd3s = fh_factor['THD3']
+  data = fh_factor.drop('THD3', axis=1)
+  return data, thd3s

@@ -11,6 +11,7 @@
 - Conductors sizing by Minimum Section
 - Conductors sizing by Coduction Capacity
 - Conductors sizing by Voltage Drop
+- Neutral sizing
 
 ## How to Use
 <p>All input parametters is in portuguese</p>
