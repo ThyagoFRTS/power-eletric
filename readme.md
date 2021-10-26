@@ -12,6 +12,7 @@
 - Conductors sizing by Coduction Capacity
 - Conductors sizing by Voltage Drop
 - Neutral sizing
+- Protection Conductor sizing
 
 ## How to Use
 <p>All input parametters is in portuguese</p>
