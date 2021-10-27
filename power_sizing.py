@@ -1,3 +1,5 @@
+import math
+
 def calculate_power_luminance(ambient_area):
   #area in m^2
   potency = 0
@@ -26,7 +28,7 @@ def calculate_number_and_power_of_tugs(ambient_name, perimeter = 0):
     number_tugs = 1
     power_tugs = number_tugs * 600
   elif ambient_name in class2:
-    number_tugs = round(perimeter/3.5)
+    number_tugs = math.ceil(perimeter/3.5)
     if number_tugs <= 3:
       power_tugs = number_tugs * 600
     else:
@@ -35,7 +37,7 @@ def calculate_number_and_power_of_tugs(ambient_name, perimeter = 0):
     number_tugs = 1
     power_tugs = number_tugs * 100
   elif ambient_name in class4:
-    number_tugs = round(perimeter/5)
+    number_tugs = math.ceil(perimeter/5)
     power_tugs = number_tugs * 100
   else:
     print('No matches found')

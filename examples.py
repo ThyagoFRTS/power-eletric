@@ -15,7 +15,7 @@ calculate_power_luminance(12)
 
 # Calculate power luminance of an ambient
 # inputs: AmbientName (str), perimeter (m) 
-calculate_number_and_power_of_tugs('sala',14)
+calculate_number_and_power_of_tugs('cozinha',13.3)
 
 # Sizing conductor by capacity conduction
 # inputs: power (Watts/VA), tension: optional (default 220), Potency-factor: optional (used if Watts, default 1)
