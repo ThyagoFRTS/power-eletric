@@ -7,7 +7,7 @@ from conductor_sizing import harmonic_rate
 from neutral_sizing import get_neutral_section
 from protection_sizing import get_conductor_protection_section
 import pathlib
-#IMPORTANT: all inputs is in portuguese, remember this
+#IMPORTANT: all inputs are in portuguese, remember this
 
 # Calculate power luminance of an ambient
 # inputs: Area (m^2)
@@ -41,7 +41,7 @@ neutral_section1 = get_neutral_section(95, 10, circuit_type = 'tri', index_THD3 
 
 
 # Sizing protection
-# inputs: phase_section (mm)
-neutral_section1 = get_neutral_section(70, 130, circuit_type = 'tri', index_THD3 = 0.6, balanced_circuit = True, installation_method = 'B1', ft=1, fg=1)
+# inputs: phase_section (mm), Ib: Project current
+neutral_section1 = get_neutral_section(95, 127, index_THD3 = 0.14, circuit_type = 'tri', balanced_circuit = True, installation_method = 'B1', ft=1, fg=1)
 
 get_conductor_protection_section(95)

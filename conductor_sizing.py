@@ -99,7 +99,7 @@ def voltage_drop(power, size_conductor, drop_rate = 0.04, tension = 220, fp = 1,
     for electric_current, index in zip(table[circuit][fp_selected], table[circuit][fp_selected].index):  
       if float(electric_current) <= voltage_rate:
         section = sections[index]
-        print('Section: ', section)
+        print('Section by voltage drop: ', section)
         break
   print('')
   return section
@@ -145,7 +145,7 @@ def harmonic_rate(harmonics = [], fp = 1, ft=1, fg=1 , circuit_type = 'tri', ins
         if (i*fp*fg < Ib):
           print("Normal conditions, cable with sectinon "+str(section)+" supports "+str(i)+', but with ft and fg, the real capacity is:'+ str(i*ft*fg))
           continue
-        print('Section by Conduction Capacity: ', section)
+        print('Section by Harmonic rate: ', section)
         break
 
   if fg != 1 or ft !=1:
