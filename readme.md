@@ -11,6 +11,7 @@
 - Conductors sizing by Minimum Section
 - Conductors sizing by Coduction Capacity
 - Conductors sizing by Voltage Drop
+- Conductors sizing by Harmonic Rate
 - Neutral sizing
 - Protection Conductor sizing
 
