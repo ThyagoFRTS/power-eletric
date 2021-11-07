@@ -20,7 +20,37 @@
 
 ### Examples
 
-<p>See examples.py to get an simple tutorial </p>
+#### Calculate Luminance
+```
+area = 12
+potency = calculate_power_luminance(area)
+```
+#### Calculate TUG power
+```
+area = 12
+number_tugs, power_tugs = calculate_power_luminance(area)
+```
+
+#### Calculate Phase section by Conduction Capacity
+```
+potency = 15000
+phase_section1 = conduction_capacity(potency, fp=0.9 ,ft=0.87, fg=0.8, circuit_type='mono')
+```
+
+#### Calculate Neutral section
+```
+phase_section = 95
+Ib = 10
+neutral_section1 = get_neutral_section(phase_section, Ib, circuit_type = 'tri', index_THD3 = 0.14, balanced_circuit = True)
+```
+
+#### Calculate Protection section
+```
+phase_section = 95
+protection_section1 = get_conductor_protection_section(phase_section)
+```
+
+<p>See examples.py to get other methods </p>
 
 ## How to Install
 
