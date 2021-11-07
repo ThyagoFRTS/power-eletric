@@ -57,7 +57,10 @@ protection_section1 = get_conductor_protection_section(phase_section)
 ```
 
 <p>See examples.py to get other methods </p>
-or see this [video][https://www.youtube.com/watch?v=0tetRuqnXIY]
+
+#### Calculate Protection section
+
+See this [video][https://www.youtube.com/watch?v=0tetRuqnXIY] for more details
 
 ## How to Install
 
