@@ -22,23 +22,28 @@
 
 #### Calculate Luminance
 ```
+# area in m^2
 area = 12
 potency = calculate_power_luminance(area)
 ```
 #### Calculate TUG power
 ```
-area = 12
-number_tugs, power_tugs = calculate_power_luminance(area)
+# perimeter in m
+perimeter = 12
+ambient_name = 'sala'
+number_tugs, power_tugs = calculate_number_and_power_of_tugs(ambient_name,perimeter)
 ```
 
 #### Calculate Phase section by Conduction Capacity
 ```
+# potency in VA
 potency = 15000
 phase_section1 = conduction_capacity(potency, fp=0.9 ,ft=0.87, fg=0.8, circuit_type='mono')
 ```
 
 #### Calculate Neutral section
 ```
+# section in mm, electric current (Ib) in A
 phase_section = 95
 Ib = 10
 neutral_section1 = get_neutral_section(phase_section, Ib, circuit_type = 'tri', index_THD3 = 0.14, balanced_circuit = True)
@@ -46,6 +51,7 @@ neutral_section1 = get_neutral_section(phase_section, Ib, circuit_type = 'tri', 
 
 #### Calculate Protection section
 ```
+# section in mm
 phase_section = 95
 protection_section1 = get_conductor_protection_section(phase_section)
 ```
